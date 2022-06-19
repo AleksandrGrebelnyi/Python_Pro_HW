@@ -29,7 +29,4 @@ class Order:
         res += 'Total price => ' + str(self.calculate_summa_price()) + ' UAH'
         return res
 
-    def test_commit(self):
-        pass
-
 
