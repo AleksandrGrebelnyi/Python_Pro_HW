@@ -20,7 +20,7 @@ class Order:
     def info_buyer(self):
         return f"{self.info_buyer_res.append(Buyer)}"
 
-    def calculate_summa_price(self):
+    def calculate_summa_price(self):  # достаем стоимость товара и сразу суммируем
         return sum([getattr(i, 'price') for i in self.cart])
 
     def __str__(self, *args, **kwargs):
