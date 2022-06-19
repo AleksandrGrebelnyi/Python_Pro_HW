@@ -11,14 +11,8 @@ class Order:
     def __init__(self, client, goods, *args, **kwargs):
         self.cart = []
         self.info_buyer_res = []
-        self.client = client
-        self.goods = goods
-
-    def add_product(self):
-        return self.cart.append(Products)
-
-    def info_buyer(self):
-        return f"{self.info_buyer_res.append(Buyer)}"
+        self.client = client  # при вызове добавляем Customers
+        self.goods = goods  # при вызове добавляем Purchases
 
     def calculate_summa_price(self):  # достаем стоимость товара и сразу суммируем
         return sum([getattr(i, 'price') for i in self.cart])
@@ -30,3 +24,11 @@ class Order:
         return res
 
 
+
+
+
+    # def add_product(self):  это не надо
+    #     return self.cart.append(Products)
+
+    # def info_buyer(self):   это тоже не надо
+    #     return f"{self.info_buyer_res.append(Buyer)}"
