@@ -1,7 +1,3 @@
-from products import Products
-from buyer import Buyer
-
-
 class Order:
 
     """
@@ -15,8 +11,8 @@ class Order:
         self.goods = goods  # при вызове добавляем Purchases
 
     def calculate_summa_price(self):  # достаем стоимость товара и сразу суммируем
-        return sum([getattr(i, 'price') for i in self.cart])
-
+        return sum([i.price for i in self.cart])  # так лучше
+        # sum([getattr(i, 'price') for i in self.cart]) было так
     def __str__(self, *args, **kwargs):
         res = self.client + ' ' + ''.join(map(str, self.info_buyer_res)) + '\n'
         res += self.goods + ' ' + '\n'.join(map(str, self.cart)) + '\n'
