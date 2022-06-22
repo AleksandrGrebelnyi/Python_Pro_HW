@@ -10,25 +10,20 @@
 # Реализуйте метод вычисления суммарной стоимости заказа. Определите
 # метод __str__() для корректного вывода информации об этом заказе.
 """
-In file main.py we run our code
+In file main.py we run our code. And for example I added some products and client
 """
 
 from products import Products
 from buyer import Buyer
 from order import Order
 
-pr_1 = Products('Banana', 45, 'very sweet')
-pr_2 = Products('Orange', 35, 'sweet')
-pr_3 = Products('Avocado', 109, 'very ripe')
-pr_4 = Products('Cherry', 77, 'sweeter than your girlfriend')
+product_1 = Products('apple', 20, 'sweet')
+product_2 = Products('banana', 30, 'very good')
 
-b_1 = Buyer('Pupkin', 'Aleksey', '0343203964')
+client_1 = Buyer('Pupkin', 'Ivan', '93459734597')
 
-print('*' * 45)
-order = Order('Customer => ', 'Purchases:')
-order.cart.append(pr_1)
-order.cart.append(pr_3)
-order.info_buyer_res.append(b_1)
-print(order)
-print('*' * 45)
-
+order_1 = Order(client_1)
+order_1.add_product(product_1, 2)
+order_1.add_product(product_2, 1)
+order_1.add_product(product_2, 2)
+print(order_1)
