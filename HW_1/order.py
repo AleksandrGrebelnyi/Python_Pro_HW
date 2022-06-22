@@ -1,30 +1,31 @@
+from buyer import Buyer
+from products import Products
+
 class Order:
 
     """
     Created class Order and here we construct our methods
     """
 
-    def __init__(self, client, goods, *args, **kwargs):
+    def __init__(self, buyer: Buyer):
         self.cart = []
-        self.info_buyer_res = []
-        self.client = client  # при вызове добавляем Customers
-        self.goods = goods  # при вызове добавляем Purchases
+        self.quantity = []
+        self.buyer = buyer
 
-    def calculate_summa_price(self):  # достаем стоимость товара и сразу суммируем
-        return sum([i.price for i in self.cart])  # так лучше
-        # sum([getattr(i, 'price') for i in self.cart]) было так
-    def __str__(self, *args, **kwargs):
-        res = self.client + ' ' + ''.join(map(str, self.info_buyer_res)) + '\n'
-        res += self.goods + ' ' + '\n'.join(map(str, self.cart)) + '\n'
-        res += 'Total price => ' + str(self.calculate_summa_price()) + ' UAH'
+    def add_product(self, products: Products, quantity: int | float):
+        self.cart.append(products)
+        self.quantity.append(quantity)
+
+    def total_price(self):
+        total = 0
+        for i, item in enumerate(self.cart):
+            total += item.price * self.quantity[i]
+        return total
+
+    def __str__(self):
+        res = f'{self.buyer}\n'
+        for i, item in enumerate(self.cart):
+            tmp = f'\t{item} UAH * {self.quantity[i]} = {self.quantity[i] * item.price} UAH \n'
+            res += tmp
+        res += f'Total price: {self.total_price()} UAH'
         return res
-
-
-
-
-
-    # def add_product(self):  это не надо
-    #     return self.cart.append(Products)
-
-    # def info_buyer(self):   это тоже не надо
-    #     return f"{self.info_buyer_res.append(Buyer)}"
