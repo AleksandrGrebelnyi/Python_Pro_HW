@@ -22,7 +22,7 @@ student_8 = Student('Aleks', 'Lusha', 20)
 student_9 = Student('Ivan', 'Ivanov', 19)
 student_10 = Student('Oleh', 'Istratov', 19)
 student_11 = Student('Vaska', 'Petrov', 20)
-student_12 = Student('Igor', 'Robz', 20)
+student_12 = Student('Pedro', 'Robz', 20)
 
 group_1 = Group('Python')
 group_1.add_student(student_1)
@@ -39,5 +39,10 @@ group_1.add_student(student_10)
 group_1.add_student(student_11)
 group_1.add_student(student_12)
 
-group_1.find_student('Ivanov')
+for surname in group_1.find_student_by_surname('Ivanov'):
+    print('Was found: ', surname)
+
+for char in group_1.find_by_char('P'):
+    print('List of names, starts with "P"', char)
+
 print(group_1)
