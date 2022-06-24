@@ -1,32 +1,30 @@
 from student_subclass import Student
-from person_superclass import Person
-
+from settings import LIMIT_OF_STUDENTS
 
 class Group:
-    group_students = 0
 
-    def __init__(self, course):
+    def __init__(self, course: str):
         self.course = course
         self.group_students = []
 
     def add_student(self, student: Student):
-        if student not in self.group_students and Student.total_students != 10:
+        if student not in self.group_students and len(self.group_students) < LIMIT_OF_STUDENTS:
             self.group_students.append(student)
-            Student.total_students += 1
 
     def remove_student(self, student: Student):
-        self.group_students.remove(student)
-        if self.group_students:
-            Student.total_students -= 1
+        if student in self.group_students:
+            self.group_students.remove(student)
 
-    def find_student(self, lastname,*args, **kwargs):
-        for i, item in enumerate(self.group_students):
-            if lastname in item.lastname:
-                print('\nStudent found: ', self.group_students[i])
+    def find_student_by_surname(self, value: str):
+        res = [stud for stud in self.group_students if stud.lastname == value]
+        return res or None
+
+    def find_by_char(self, value: str):
+        res = [stud for stud in self.group_students if stud.lastname.startswith(value)
+               or stud.firstname.startswith(value)]
+        return res or None
 
     def __str__(self, *args, **kwargs):
         res = f'Course: {self.course}\n'
         res += f'Students group:\n\t{"".join(map(str, self.group_students))}\n'
-        res += f'Total: {Student.total_students} students'
-
         return res
