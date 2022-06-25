@@ -1,9 +1,8 @@
 class NegativeNumber(Exception):
 
-    def __init__(self, price, desc):
+    def __init__(self, price):
         self.price = price
-        self.desc = desc
 
     def __str__(self):
-        return f'Invalid {self.price} - {self.desc}'
+        return f'Invalid {self.price}'
 
