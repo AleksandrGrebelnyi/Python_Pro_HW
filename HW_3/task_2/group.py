@@ -4,7 +4,8 @@ from exception import GroupLimit
 
 
 class Group:
-    st = 0
+    stp = 0
+
     def __init__(self, course: str):
         self.course = course
         self.group_students = []
@@ -13,11 +14,12 @@ class Group:
         if student not in self.group_students and len(self.group_students) >= LIMIT_OF_STUDENTS:
             raise GroupLimit(len(self.group_students), "We can't take more students\n")
         self.group_students.append(student)
-        Group.st += 1
+        Group.stp += 1
 
     def remove_student(self, student: Student):
         if student in self.group_students:
             self.group_students.remove(student)
+            Group.stp -= 1
 
     def find_student_by_surname(self, value: str):
         res = [stud for stud in self.group_students if stud.lastname == value]
