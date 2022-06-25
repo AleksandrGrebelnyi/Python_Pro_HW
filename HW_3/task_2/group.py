@@ -12,7 +12,7 @@ class Group:
 
     def add_student(self, student: Student):
         if student not in self.group_students and len(self.group_students) >= LIMIT_OF_STUDENTS:
-            raise GroupLimit(len(self.group_students), "We can't take more students\n")
+            raise GroupLimit(len(self.group_students))
         self.group_students.append(student)
         Group.stp += 1
 
