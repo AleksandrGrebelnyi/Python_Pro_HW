@@ -5,7 +5,7 @@
 from exception import GroupLimit
 from student import Student
 from group import Group
-from settings import LIMIT_OF_STUDENTS
+
 
 student_1 = Student('Ivan', 'Pupkin', 20)
 student_2 = Student('Valera', 'Reza', 19)
@@ -34,7 +34,7 @@ try:
     group_1.add_student(student_10)
     group_1.add_student(student_11)
 except GroupLimit as gl:
-    print(gl, 'Group is full, try later')
+    print(gl, 'Try later')
 
 group_2 = Group('Java')
 group_2.add_student(student_11)
