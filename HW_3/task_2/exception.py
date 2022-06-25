@@ -1,6 +1,6 @@
 class GroupLimit(Exception):
 
-    def __init__(self, limit, desc):
+    def __init__(self, desc):
         self.desc = desc
 
     def __str__(self):
