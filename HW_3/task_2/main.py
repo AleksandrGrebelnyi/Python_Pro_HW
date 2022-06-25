@@ -36,10 +36,13 @@ try:
 except GroupLimit as gl:
     print(gl, 'Group is full, try later')
 
-# group_1.add_student(student_11)
-# group_1.add_student(student_12)
+group_2 = Group('Java')
+group_2.add_student(student_11)
+group_2.add_student(student_12)
+group_2.remove_student(student_12)
 
-print(group_1, '\n' + 'Total', Group.st)
+print(group_1, group_2, '\n' + 'General amount of students ', Group.stp)
+
 
 
 
