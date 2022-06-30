@@ -5,43 +5,88 @@ from exception_for_text import EmptyFile
 
 class WorkWithText:
 
-    def __init__(self, text):
-        self.text = text
+    def __init__(self):
+        pass
 
     def number_of_words(self):
-        return self.text.count(' ')
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            res = 0
+            while data:
+                res += data.count(' ')
+                data = f.readline()
+        return res
 
     def amount_of_strings(self):
-        count = 0
-        for i in self.text:
-            if '\n' in i:
-                count += 1
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            count = 1
+            while data:
+                for i in data:
+                    if '\n' in i:
+                        count += 1
+                data = f.readline()
         return count
 
+
     def number_of_symbols(self):
-        return len(self.text)
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            count = 0
+            while data:
+                for i in data:
+                    count += len(i)
+                data = f.readline()
+        return count
 
     def num_of_symbols_without_spaces(self):
-        return len(self.text) - self.text.count(' ')
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            count = 0
+            while data:
+                for i in data:
+                    count += len(i)
+                data = f.readline()
+        return count - WorkWithText.number_of_words(res)
 
     def amount_of_sentence(self):
-        return len(self.text.split('. ')) + 1
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            count = 1
+            while data:
+                count += data.count('. ')
+                data = f.readline()
+        return count
 
     def how_many_points(self):
-        return self.text.count('.')
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            count = 0
+            while data:
+                count += data.count('.')
+                data = f.readline()
+        return count
 
     def how_many_numbers(self):
-        count = 0
-        for number in self.text:
-            if number.isdigit():
-                count += 1
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            count = 0
+            while data:
+                for num in data:
+                    if num.isdigit():
+                        count += 1
+                data = f.readline()
         return count
 
     def how_many_dashes(self):
-        count = 0
-        for dash in self.text:
-            if '-' in dash:
-                count += 1
+        with open('some_text.txt', 'r', encoding='utf-8') as f:
+            data = f.readline()
+            count = 0
+            while data:
+                for dash in data:
+                    if '-' in dash:
+                        count += 1
+                data = f.readline()
         return count
 
     def __str__(self):
@@ -60,8 +105,6 @@ if __name__ == '__main__':
     try:
         if os.path.getsize('some_text.txt') <= 0:
             raise EmptyFile
-        with open('some_text.txt', 'r') as f:
-            data = f.read()
     except OSError as e:
         print(e, 'File is empty or not exist')
     except EmptyFile as am:
@@ -70,7 +113,7 @@ if __name__ == '__main__':
 
     s = os.path.getsize('some_text.txt')
     print('File size is', s, 'kb.')
-    res = WorkWithText(data)
+    res = WorkWithText()
     res.number_of_words()
     res.number_of_symbols()
     res.num_of_symbols_without_spaces()
@@ -80,5 +123,4 @@ if __name__ == '__main__':
     res.how_many_dashes()
     res.amount_of_strings()
     print(res)
-    print(data)
 
