@@ -14,16 +14,15 @@ class Rectangle:
         self.high = high
         self.width = width
 
-    def rec_square(self):
+    def rec_area(self):
         return self.high * self.width
 
-    def __str__(self):
-        res = f'[high = {self.high}, width = {self.width}]\n'
-        # res += f'Square of rectangle is: {self.rec_square()}\n'
-        return res
-
     def __add__(self, other):
-        return self.high + other.high, self.width + other.width
+        new_high = self.high
+        new_width = other.rec_area() / new_high
+        total_high = self.high
+        total_width = self.width + new_width
+        return Rectangle(total_high, total_width)
 
     def __mul__(self, other):
         if isinstance(other, int):
@@ -32,15 +31,20 @@ class Rectangle:
             return NotImplemented
 
     def __eq__(self, other):
-        return self.rec_square() == other.rec_square()
+        return self.rec_area() == other.rec_area()
+
+    def __str__(self):
+        res = f'[high = {self.high}, width = {self.width}]\n'
+        res += f'Area = {self.rec_area()}'
+        return res
 
 rec_1 = Rectangle(4, 5)
-rec_2 = Rectangle(4, 7)
-rec_3 = Rectangle(8, 12)
-print(rec_1, rec_2, rec_3, sep='\n')
-print(f'Equal?  {rec_1 == rec_2}')
-print(f'Square: {rec_1.rec_square()}')
-print(f'Summa {rec_1 + rec_2}')
+rec_2 = Rectangle(3, 7)
 
-print(rec_1 * 2)
+print(rec_1, rec_2, sep='\n')
+print(f'Equal?  {rec_1 == rec_2}')
+print(f'Square = {rec_1.rec_area()}')
+print(f'Summa = {rec_1 + rec_2}')
+print(f'Multipy = {rec_1 * 2}')
+
 
