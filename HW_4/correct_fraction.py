@@ -4,14 +4,17 @@
 class CorrectFraction:
 
     def __init__(self, numerator: int, denominator: int):
-        if not isinstance(numerator, int) and not isinstance(denominator, int):
+        if isinstance(numerator, float) or isinstance(denominator, float):
             raise TypeError
         self.numerator = numerator
         self.denominator = denominator
 
     def __add__(self, other):
-        return CorrectFraction(self.numerator * other.denominator + other.numerator * self.denominator,
-                               self.denominator * other.denominator)
+        if isinstance(self, float) and isinstance(other, float):
+            return NotImplemented
+        else:
+            return CorrectFraction(self.numerator * other.denominator + other.numerator * self.denominator,
+                                self.denominator * other.denominator)
 
     def __sub__(self, other):
         return CorrectFraction(self.numerator * other.denominator - other.numerator * self.denominator,
@@ -44,8 +47,8 @@ class CorrectFraction:
         else:
             return f'Incorrect fraction {self.numerator} / {self.denominator}'
 
-fr_1 = CorrectFraction(1, 7)
-fr_2 = CorrectFraction(2, 5)
+fr_1 = CorrectFraction(1, 3)
+fr_2 = CorrectFraction(2, 6)
 print('Plus = ', fr_1 + fr_2)
 print('Minus = ', fr_1 - fr_2)
 print('Multipy = ', fr_1 * fr_2)
