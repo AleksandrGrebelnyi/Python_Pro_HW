@@ -4,8 +4,10 @@
 class CorrectFraction:
 
     def __init__(self, numerator: int, denominator: int):
-        if isinstance(numerator, float) or isinstance(denominator, float):
-            raise TypeError
+        if not isinstance(numerator, int) or not isinstance(denominator, int):
+            raise TypeError('Must be integer')
+        if denominator == 0:
+            raise ZeroDivisionError('Denominator can not be zero')
         self.numerator = numerator
         self.denominator = denominator
 
@@ -14,7 +16,7 @@ class CorrectFraction:
             return NotImplemented
         else:
             return CorrectFraction(self.numerator * other.denominator + other.numerator * self.denominator,
-                                self.denominator * other.denominator)
+                                   self.denominator * other.denominator)
 
     def __sub__(self, other):
         return CorrectFraction(self.numerator * other.denominator - other.numerator * self.denominator,
@@ -47,7 +49,8 @@ class CorrectFraction:
         else:
             return f'Incorrect fraction {self.numerator} / {self.denominator}'
 
-fr_1 = CorrectFraction(1, 3)
+
+fr_1 = CorrectFraction(1, 4)
 fr_2 = CorrectFraction(2, 6)
 print('Plus = ', fr_1 + fr_2)
 print('Minus = ', fr_1 - fr_2)
