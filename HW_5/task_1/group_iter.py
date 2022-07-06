@@ -7,7 +7,7 @@ class GroupIter:
 
     def __next__(self):
         if self.index < len(self.group_students):
-            self.index = self.index + 1
+            self.index += 1
             return self.group_students[self.index - 1]
         else:
             raise StopIteration
