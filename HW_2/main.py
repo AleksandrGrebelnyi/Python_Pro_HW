@@ -34,10 +34,10 @@ group_1.add_student(student_6)
 group_1.add_student(student_7)
 group_1.add_student(student_8)
 group_1.add_student(student_9)
-group_1.add_student(student_10)
+group_1 += student_10
 
-group_1.add_student(student_11)
-group_1.add_student(student_12)
+# group_1.add_student(student_11)
+# group_1.add_student(student_12)
 
 for surname in group_1.find_student_by_surname('Ivanov'):
     print('Was found: ', surname)
@@ -46,3 +46,6 @@ for char in group_1.find_by_char('P'):
     print('List of names, starts with "P"', char)
 
 print(group_1)
+print('*' * 45)
+
+
