@@ -41,14 +41,17 @@ for char in group_1.find_by_char('P'):
 print(group_1)
 print('*' * 45)
 
-for stud in group_1:
-    print(stud)
+# по итерации работает
+for stud_iter in group_1:
+    print(stud_iter)
 print('*' * 45)
 
+# по индексу работает
 stud_index = group_1[2]
 print(stud_index)
 print('*' * 45)
 
+# по срезу работает
 stud_slise = group_1[5:8]
 for stud in stud_slise:
     print(stud)
