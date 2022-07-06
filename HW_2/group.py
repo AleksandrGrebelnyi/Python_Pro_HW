@@ -1,6 +1,7 @@
 from student_subclass import Student
 from settings import LIMIT_OF_STUDENTS
 
+
 class Group:
 
     def __init__(self, course: str):
@@ -10,6 +11,10 @@ class Group:
     def add_student(self, student: Student):
         if student not in self.group_students and len(self.group_students) < LIMIT_OF_STUDENTS:
             self.group_students.append(student)
+
+    def __iadd__(self, other):
+        self.group_students.append(other)
+        return self
 
     def remove_student(self, student: Student):
         if student in self.group_students:
