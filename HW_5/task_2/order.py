@@ -1,5 +1,7 @@
 from buyer import Buyer
 from products import Products
+from cart_iter import CartIter
+
 
 class Order:
 
@@ -29,6 +31,34 @@ class Order:
             res += tmp
         res += f'Total price: {self.total_price()} UAH'
         return res
+
+    def __getitem__(self, index):
+        if isinstance(index, int):
+            if 0 <= index <= len(self.cart):
+                return self.cart[index]
+            else:
+                raise IndexError
+
+        if isinstance(index, slice):
+            slice_cart = []
+            start = 0 if index.start is None else index.start
+            stop = len(self.cart) if index.stop is None else index.stop
+            step = 1 if index.step is None else index.step
+            if 0 > index.start and index.stop > len(self.cart):
+                raise IndexError
+            for i in range(start, stop, step):
+                slice_cart.append(self.cart[i])
+            return slice_cart
+        else:
+            raise TypeError
+
+    def __len__(self):
+        return self.cart  # может потом попробовать len
+
+    def __iter__(self):
+        return CartIter(self.cart)
+
+
 
     # def __init__(self, buyer: Buyer):
     #     self.cart = {}
