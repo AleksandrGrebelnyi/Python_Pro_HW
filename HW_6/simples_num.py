@@ -3,7 +3,7 @@
 # функции
 
 def prime_numbers(stop):
-    for i in range(1, stop):
+    for i in range(2, stop - 1):
         if i == 1:
             continue
         for j in range(2, i):
