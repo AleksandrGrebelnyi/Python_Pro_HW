@@ -6,9 +6,10 @@
 
 def decor(f):
     def save_to_file(args):
+        res = f(args)
         with open(args.__class__.__name__ + '.txt', 'a') as info:  # a добавляет значения в файл
-            info.writelines(f(args))  # writelines позволяет в новую строку записывать
-        return f(args)
+            info.writelines(res)  # writelines позволяет в новую строку записывать
+        return res
     return save_to_file
 
 
