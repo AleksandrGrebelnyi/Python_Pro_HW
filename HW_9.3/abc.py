@@ -14,6 +14,14 @@ class NumberValidatorPrime(abc.ABC):
 
     @abc.abstractmethod  # 1) класс с абстрактным методом
     def check(self, number):
+        'True or False'
+
+
+class SomeClass(NumberValidatorPrime):  # 2) класс наследующий его
+    def __init__(self, number):
+        self.number = number
+
+    def check(self, number):
         if not isinstance(number, int):
             raise TypeError('Only integers')
         for i in range(1, number):
@@ -24,14 +32,8 @@ class NumberValidatorPrime(abc.ABC):
                     return False
                 else:
                     return True
-
-
-class SomeClass(NumberValidatorPrime):  # 2) класс наследующий его
-    def __init__(self, number):
-        self.number = number
-
-    def check(self, number):  # реализовали обязательный метод check в дочернем классе
-        return super().check(number)  # теперь можно создать объект этого класса, потому что мы реализовали
+        # реализовали обязательный метод check в дочернем классе
+        # return super().check(number)  # теперь можно создать объект этого класса, потому что мы реализовали
     # здесь метод check из абстрактного класса
 
 
@@ -55,4 +57,4 @@ number_one = AnotherClass()
 print(isinstance(number_one, NumberValidatorPrime))
 
 number_two = SomeClass(1)
-print(number_two.check(5))
+print(number_two.check(8))
