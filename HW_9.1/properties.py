@@ -7,9 +7,9 @@ from datetime import datetime
 
 class Car:
 
-    def __init__(self, model: str, __price: int):
+    def __init__(self, model: str, price: int):
         self.model = model
-        self.__price = __price
+        self.__price = price
 
     def __str__(self):
         return f"Car: model = {self.model}, price = {self.__price}"
