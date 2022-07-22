@@ -58,3 +58,7 @@ print(isinstance(number_one, NumberValidatorPrime))
 
 number_two = SomeClass(1)
 print(number_two.check(8))
+
+if __name__=='__main__':
+    pass
+# test from vs code
