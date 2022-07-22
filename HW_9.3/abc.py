@@ -14,7 +14,7 @@ class NumberValidatorPrime(abc.ABC):
 
     @abc.abstractmethod  # 1) класс с абстрактным методом
     def check(self, number):
-        'True or False'
+        pass
 
 
 class SomeClass(NumberValidatorPrime):  # 2) класс наследующий его
